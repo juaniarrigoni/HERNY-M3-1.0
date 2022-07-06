@@ -1,17 +1,30 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-
+const { sumArray } = require("../utils");
 app.use(express.json()); // for parsing application/json
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
   res.send({
-    message: 'hola',
+    message: "hola",
   });
 });
 
-app.post('/product', (req, res) => {
+app.get("/test", (req, res) => {
   res.send({
-    result: req.body.a / req.body.b,
+    message: "test",
+  });
+});
+
+app.post("/sum", (req, res) => {
+  const { a, b } = req.body;
+  res.send({
+    result: a + b,
+  });
+});
+
+app.post("/product", (req, res) => {
+  res.send({
+    result: req.body.a * req.body.b,
   });
 });
 
